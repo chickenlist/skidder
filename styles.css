@@ -1,0 +1,216 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #0e0e11;
+  color: white;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("123.png");
+}
+
+.gui-container {
+  width: 800px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  background: #0e0e11;
+  box-shadow: 0 0 20px #000000aa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  background: #131316;
+  padding: 10px 20px;
+  border-bottom: 1px solid #222;
+  font-size: 14px;
+}
+
+.logo {
+  font-weight: bold;
+  color: #888;
+}
+.logo span {
+  color: #5550ff;
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+}
+.tab {
+  cursor: pointer;
+  color: #888;
+  padding: 5px 15px;
+}
+.tab.active {
+  color: #fff;
+  border-bottom: 2px solid #3d45b8;
+}
+
+.content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.tab-section {
+  display: none;
+  height: 100%;
+  flex: 1;
+  flex-direction: row;
+}
+.tab-section.active-tab {
+  display: flex;
+}
+
+.sidebar {
+  width: 180px;
+  background: #111;
+  border-right: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+.module-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #ccc;
+}
+.module-button.active,
+.module-button:hover {
+  background: #1a1a1d;
+  color: white;
+}
+
+.module-settings {
+  flex: 1;
+  padding: 20px;
+  background: #0e0e11;
+  overflow-y: auto;
+}
+
+.module-content {
+  display: none;
+}
+.module-content.active-module {
+  display: block;
+}
+
+.setting {
+  background: #1a1a1d;
+  padding: 20px;
+  border: 1px solid #222;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+}
+
+.toggle-label, .range-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+input[type="range"] {
+  width: 150px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 18px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #444;
+  transition: .2s;
+  border-radius: 18px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .2s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #5550ff;
+}
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.centered-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.keybind-input {
+  width: 120px;
+  padding: 4px 8px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.keybind-input:focus {
+  outline: none;
+  border-color: #5550ff;
+}
+
+#drawToggle {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #5550ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1001;
+  transition: background-color 0.2s ease;
+}
+#drawToggle:hover {
+  background-color: #403fd4;
+}
+
+#drawCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  z-index: 1000;
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+
+

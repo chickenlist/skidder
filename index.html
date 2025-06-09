@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dream Advanced GUI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<!-- Draw Mode Button -->
+<button id="drawToggle">Draw Mode</button>
+
+<!-- Canvas for Drawing -->
+<canvas id="drawCanvas"></canvas>
+
+  <div class="centered-wrapper">
+    <div class="gui-container">
+      
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <div class="logo">Salorid <span>SKIDED BY QLIST</span></div>
+        <div class="tabs">
+          <div class="tab active" onclick="openTab('combat')">COMBAT</div>
+          <div class="tab" onclick="openTab('visual')">VISUAL</div>
+          <div class="tab" onclick="openTab('util')">UTIL</div>
+          <div class="tab" onclick="openTab('settings')">SETTINGS</div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+
+        <!-- === COMBAT TAB === -->
+        <div id="tab-combat" class="tab-section active-tab">
+          <div class="sidebar">
+            <div class="module-button active" onclick="showModule('autoClick')">AUTO CLICK</div>
+            <div class="module-button" onclick="showModule('aimAssist')">AIM ASSIST</div>
+            <div class="module-button" onclick="showModule('reach')">REACH</div>
+            <div class="module-button" onclick="showModule('velocity')">VELOCITY</div>
+            <div class="module-button" onclick="showModule('wtap')">WTAP</div>
+            <div class="module-button" onclick="showModule('hitselect')">HIT SELECT</div>
+          </div>
+          
+          <div class="module-settings">
+            <!-- Auto Click Module -->
+            <div id="autoClick" class="module-content active-module">
+                
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </label>
+                <label class="range-label">Clicks Per Second
+                  <input type="range" min="1" max="20" value="12.5" />
+                </label>
+                <select class="dropdown">
+                  <option>ButterFly</option>
+                  <option>Jitter</option>
+                </select>
+                  <label class="toggle-label">
+    <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+              </div>
+            </div>
+
+            <!-- Aim Assist Module -->
+            <div id="aimAssist" class="module-content">
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </label>
+                <label class="range-label">FOV
+                  <input type="range" min="1" max="180" value="90" />
+                </label>
+                <label class="toggle-label">
+                  <span>Weapon Only</span>
+                  <input type="checkbox" />
+                      <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+                </label>
+              </div>
+            </div>
+
+            <!-- Reach Module -->
+            <div id="reach" class="module-content">
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </label>
+                <label class="range-label">Distance
+                  <input type="range" min="3" max="6" value="4.5" />
+                      <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+                </label>
+              </div>
+            </div>
+
+            <!-- Velocity Module -->
+            <div id="velocity" class="module-content">
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </label>
+                <label class="range-label">Chance
+                  <input type="range" min="0" max="100" value="75" />
+                </label>
+                <select class="dropdown">
+                  <option>Jump Reset</option>
+                  <option>Normal</option>
+                </select>
+                    <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+              </div>
+            </div>
+
+            <!-- WTap Module -->
+            <div id="wtap" class="module-content">
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </label>
+                <label class="range-label">Chance
+                  <input type="range" min="0" max="100" value="75" />
+                </label>
+                <label class="range-label">Release Delay
+                  <input type="range" min="0" max="100" value="75" />
+                </label>
+                <label class="range-label">Re-Press Delay
+                  <input type="range" min="0" max="100" value="75" />
+                </label>
+                <label class="toggle-label">
+                  <span>Select Hits</span>
+                  <input type="checkbox" />
+                      <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+                </label>
+              </div>
+            </div>
+
+            <!-- Hit Select Module -->
+            <div id="hitselect" class="module-content">
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </label>
+                <label class="range-label">Chance
+                  <input type="range" min="0" max="100" value="75" />
+                </label>
+                    <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- === VISUAL TAB === -->
+        <div id="tab-visual" class="tab-section">
+          <div class="sidebar">
+            <div class="module-button active" onclick="showModule('esp')">ESP</div>
+            <div class="module-button" onclick="showModule('nametags')">NAMETAGS</div>
+            <div class="module-button" onclick="showModule('tracers')">TRACERS</div>
+          </div>
+
+          <div class="module-settings">
+            <!-- ESP Module -->
+            <div id="esp" class="module-content active-module">
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch"><input type="checkbox" /><span class="slider"></span></label>
+                </label>
+                <label class="range-label">Mode
+                  <select class="dropdown">
+                    <option>3D</option>
+                    <option>2D</option>
+                    <option>Skeleton</option>
+                    <option>Outline</option>
+                  </select>
+                </label>
+                <label class="range-label">Color
+                  <input type="color" value="#ffffff" />
+                </label>
+                    <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+              </div>
+            </div>
+
+            <!-- NameTags Module -->
+<div id="nametags" class="module-content">
+  <div class="setting">
+    <label class="toggle-label">
+      <span>Enable</span>
+      <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+    </label>
+
+    <label class="toggle-label">
+      <span>Ignore Invisibles</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Auto Scale</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="range-label">
+      Scale
+      <input type="range" min="0.1" max="2" step="0.1" value="1">
+    </label>
+
+    <label class="toggle-label">
+      <span>Hide Bots</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Render Players</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Health</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Distance</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Effects</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="range-label">
+      Max Distance
+      <input type="range" min="10" max="500" step="10" value="250">
+    </label>
+
+    <label class="toggle-label">
+      <span>Equipment</span>
+      <input type="checkbox">
+    </label>
+  </div>
+</div>
+
+<div id="tracers" class="module-content">
+  <div class="setting">
+    <label class="toggle-label">
+      <span>Enable</span>
+      <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+    </label>
+
+    <label class="toggle-label">
+      <span>Ignore Invisibles</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Color By Distance</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Highlight if Focusing</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Render Players</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Enemy Only</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="toggle-label">
+      <span>Distance Check</span>
+      <input type="checkbox">
+    </label>
+
+    <label class="range-label">
+      Tracer Color
+      <input type="color" value="#ffffff">
+    </label>
+        <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+  </div>
+
+            <!-- Tracers Module -->
+            <div id="tracers" class="module-content">
+              <!-- Toggle options like Enable, Ignore Invisibles, etc. -->
+              <!-- Truncated for brevity -->
+            </div>
+          </div>
+        </div>
+
+        <!-- === UTIL TAB === -->
+        <div id="tab-util" class="tab-section">
+          <div class="sidebar">
+            <div class="module-button active" onclick="showModule('backtrack')">BACKTRACK</div>
+            <div class="module-button" onclick="showModule('fakelag')">FAKE LAG</div>
+            <div class="module-button" onclick="showModule('util-tracers')">TRACERS</div>
+          </div>
+
+          <div class="module-settings">
+            <div id="backtrack" class="module-content active-module">
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch"><input type="checkbox" /><span class="slider"></span></label>
+                </label>
+                <label class="range-label">Latency
+                  <input type="range" min="0" max="100" value="75" />
+                </label>
+                <label class="range-label">Mode
+                  <select class="dropdown">
+                    <option>Lag Base</option>
+                    <option>Manual</option>
+                  </select>
+                </label>
+                <label class="range-label">Color
+                  <input type="color" value="#ffffff" />
+                      <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+
+            <!-- Fake Lag Module -->
+          <div class="module-settings">
+            <div id="fakelag" class="module-content active-module">
+              <div class="setting">
+                <label class="toggle-label">
+                  <span>Enable</span>
+                  <label class="switch"><input type="checkbox" /><span class="slider"></span></label>
+                </label>
+                <label class="range-label">Latency
+                  <input type="range" min="0" max="100" value="75" />
+                </label>
+                <label class="range-label">Mode
+                  <select class="dropdown">
+                    <option>Lag Base</option>
+                    <option>Manual</option>
+                  </select>
+                      <span>Bind Key</span>
+    <input type="text" class="keybind-input" readonly placeholder="Press a key" onclick="captureKey(this)" />
+  </label>
+              </div>
+            </div>
+
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- === SETTINGS TAB === -->
+        <div id="tab-settings" class="tab-section">
+          <!-- Placeholder for settings content -->
+        </div>
+
+      </div> <!-- End Content -->
+    </div> <!-- End GUI Container -->
+  </div> <!-- End Wrapper -->
+
+  <script src="script.js"></script>
+</body>
+</html>
