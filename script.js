@@ -84,3 +84,14 @@ canvas.addEventListener("mouseleave", () => {
   drawing = false;
 });
 
+const toggleSound = document.getElementById('toggleSound');
+
+document.querySelectorAll('.switch input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', e => {
+    if (e.target.checked) {
+      toggleSound.currentTime = 0;
+      toggleSound.play();
+    }
+  });
+});
+
